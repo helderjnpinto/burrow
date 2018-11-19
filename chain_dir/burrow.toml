@@ -1,0 +1,88 @@
+[GenesisDoc]
+  GenesisTime = 2018-11-19T12:54:34Z
+  ChainName = "BurrowChain_FAB3C1"
+  [GenesisDoc.Params]
+    ProposalThreshold = 3
+  [GenesisDoc.GlobalPermissions]
+    [GenesisDoc.GlobalPermissions.Base]
+      Perms = "send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | hasRole"
+      SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+
+  [[GenesisDoc.Accounts]]
+    Address = "FC37D959A92E6106A617EDFA42142C6926B67EB0"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"1FF54277496C8E055DD7080B346D88AFD025F6DD37ADF6EDB27EF1DE65A29E77\"}"
+    Amount = 99999999999999
+    Name = "Full_0"
+    [GenesisDoc.Accounts.Permissions]
+      [GenesisDoc.Accounts.Permissions.Base]
+        Perms = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+        SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+
+  [[GenesisDoc.Accounts]]
+    Address = "BF6B575E6C7CECE899B04EA5D4FA56FD406BC5D2"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"D3F695916FEE22D9B180FE037608497B70E63F9B92B7D7DFD5B91F5694928A48\"}"
+    Amount = 9999999999
+    Name = "Participant_0"
+    [GenesisDoc.Accounts.Permissions]
+      [GenesisDoc.Accounts.Permissions.Base]
+        Perms = "send | call | name | proposal | input | hasRole"
+        SetBit = "send | call | name | proposal | input | hasRole"
+
+  [[GenesisDoc.Validators]]
+    Address = "FC37D959A92E6106A617EDFA42142C6926B67EB0"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"1FF54277496C8E055DD7080B346D88AFD025F6DD37ADF6EDB27EF1DE65A29E77\"}"
+    Amount = 9999999999
+    Name = "Full_0"
+
+    [[GenesisDoc.Validators.UnbondTo]]
+      Address = "FC37D959A92E6106A617EDFA42142C6926B67EB0"
+      PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"1FF54277496C8E055DD7080B346D88AFD025F6DD37ADF6EDB27EF1DE65A29E77\"}"
+      Amount = 9999999999
+
+[Tendermint]
+  Seeds = ""
+  SeedMode = false
+  PersistentPeers = ""
+  ListenAddress = "tcp://0.0.0.0:26656"
+  ExternalAddress = ""
+  Moniker = ""
+  TendermintRoot = ".burrow"
+  AuthorizedPeers = ""
+  CreateEmptyBlocks = true
+  CreateEmptyBlocksInterval = 0
+
+[Execution]
+  CallStackMaxDepth = 0
+  DataStackInitialCapacity = 1024
+  DataStackMaxDepth = 0
+
+[Keys]
+  GRPCServiceEnabled = true
+  AllowBadFilePermissions = false
+  RemoteAddress = ""
+  KeysDirectory = ".keys"
+
+[RPC]
+  [RPC.Info]
+    Enabled = true
+    ListenAddress = "tcp://127.0.0.1:26658"
+  [RPC.Profiler]
+    Enabled = false
+    ListenAddress = "tcp://127.0.0.1:6060"
+  [RPC.GRPC]
+    Enabled = true
+    ListenAddress = "127.0.0.1:10997"
+  [RPC.Metrics]
+    Enabled = false
+    ListenAddress = "tcp://127.0.0.1:9102"
+    MetricsPath = "/metrics"
+    BlockSampleSize = 100
+
+[Logging]
+  ExcludeTrace = false
+  NonBlocking = false
+  [Logging.RootSink]
+    [Logging.RootSink.Output]
+      OutputType = "stderr"
+      Format = "json"
+
