@@ -1,16 +1,16 @@
 [GenesisDoc]
-  GenesisTime = 2018-11-19T12:54:34Z
-  ChainName = "BurrowChain_FAB3C1"
+  GenesisTime = 2018-11-27T13:02:39Z
+  ChainName = "BurrowChain_F0406B"
   [GenesisDoc.Params]
     ProposalThreshold = 3
   [GenesisDoc.GlobalPermissions]
     [GenesisDoc.GlobalPermissions.Base]
-      Perms = "send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | hasRole"
-      SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
+      Perms = "send | call | createContract | createAccount | name | proposal | input | hasRole"
+      SetBit = "send | call | createContract | createAccount | name | proposal | input | hasRole"
 
   [[GenesisDoc.Accounts]]
-    Address = "FC37D959A92E6106A617EDFA42142C6926B67EB0"
-    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"1FF54277496C8E055DD7080B346D88AFD025F6DD37ADF6EDB27EF1DE65A29E77\"}"
+    Address = "A388CE800DAB14B9362FC44A8F217F169C3DA3A9"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"41F47DD532FF38B6DF56662C7F4D719BF693CCB8AD4EFDBA8C5CA8B4E1F9897F\"}"
     Amount = 99999999999999
     Name = "Full_0"
     [GenesisDoc.Accounts.Permissions]
@@ -19,8 +19,8 @@
         SetBit = "root | send | call | createContract | createAccount | bond | name | proposal | input | batch | hasBase | setBase | unsetBase | setGlobal | hasRole | addRole | removeRole"
 
   [[GenesisDoc.Accounts]]
-    Address = "BF6B575E6C7CECE899B04EA5D4FA56FD406BC5D2"
-    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"D3F695916FEE22D9B180FE037608497B70E63F9B92B7D7DFD5B91F5694928A48\"}"
+    Address = "FEBD7F4059107B2C6C22087C5D8A5E54F92A9CFA"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"836FF5E00367EF00351CF00E12F88E51BECFBFDC5832182223F525C09743D141\"}"
     Amount = 9999999999
     Name = "Participant_0"
     [GenesisDoc.Accounts.Permissions]
@@ -29,14 +29,14 @@
         SetBit = "send | call | name | proposal | input | hasRole"
 
   [[GenesisDoc.Validators]]
-    Address = "FC37D959A92E6106A617EDFA42142C6926B67EB0"
-    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"1FF54277496C8E055DD7080B346D88AFD025F6DD37ADF6EDB27EF1DE65A29E77\"}"
+    Address = "A388CE800DAB14B9362FC44A8F217F169C3DA3A9"
+    PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"41F47DD532FF38B6DF56662C7F4D719BF693CCB8AD4EFDBA8C5CA8B4E1F9897F\"}"
     Amount = 9999999999
     Name = "Full_0"
 
     [[GenesisDoc.Validators.UnbondTo]]
-      Address = "FC37D959A92E6106A617EDFA42142C6926B67EB0"
-      PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"1FF54277496C8E055DD7080B346D88AFD025F6DD37ADF6EDB27EF1DE65A29E77\"}"
+      Address = "A388CE800DAB14B9362FC44A8F217F169C3DA3A9"
+      PublicKey = "{\"CurveType\":\"ed25519\",\"PublicKey\":\"41F47DD532FF38B6DF56662C7F4D719BF693CCB8AD4EFDBA8C5CA8B4E1F9897F\"}"
       Amount = 9999999999
 
 [Tendermint]

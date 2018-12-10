@@ -2,11 +2,19 @@
 	"Params": {
 		"ProposalThreshold": 3
 	},
-	"Accounts": [
-		{
+	"GlobalPermissions": [
+		"send",
+		"call",
+		"name",
+		"hasRole",
+		"proposal",
+		"input",
+		"CreateAccount",
+		"CreateContract"
+	],
+	"Accounts": [{
 			"Name": "Full_0",
-			"Amounts": [
-				{
+			"Amounts": [{
 					"Type": "Native",
 					"Amount": 99999999999999
 				},
@@ -21,12 +29,10 @@
 		},
 		{
 			"Name": "Participant_0",
-			"Amounts": [
-				{
-					"Type": "Native",
-					"Amount": 9999999999
-				}
-			],
+			"Amounts": [{
+				"Type": "Native",
+				"Amount": 9999999999
+			}],
 			"Permissions": [
 				"send",
 				"call",
@@ -34,16 +40,6 @@
 				"hasRole",
 				"proposal",
 				"input"
-			],
-			"GlobalPermissions": [
-				"send",
-				"call",
-				"name",
-				"hasRole",
-				"proposal",
-				"input",
-				"CreateAccount",
-				"CreateContract"
 			]
 		}
 	]

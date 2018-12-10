@@ -1,0 +1,5 @@
+jobs:
+- name: sendTxTest1
+  send:
+      destination: 1768CA5F249B0CB079AEBC084EE4177A8762FE8E
+      amount: 42
