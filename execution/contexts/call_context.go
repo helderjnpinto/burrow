@@ -2,9 +2,10 @@ package contexts
 
 import (
 	"fmt"
+	"github.com/tmthrgd/go-hex"
+	// "encoding/json"
 
 	"github.com/hyperledger/burrow/crypto"
-
 	"github.com/hyperledger/burrow/acm"
 	"github.com/hyperledger/burrow/acm/state"
 	"github.com/hyperledger/burrow/bcm"
@@ -195,8 +196,27 @@ func (ctx *CallContext) Deliver(inAcc, outAcc *acm.Account, value uint64) error 
 	}
 	ctx.Logger.Trace.Log("callee", callee)
 
-	vmach := evm.NewVM(params, caller, ctx.txe.Envelope.Tx, ctx.Logger, ctx.VMOptions...)
-	ret, exception := vmach.Call(txCache, ctx.txe, caller, callee, code, ctx.tx.Data, value, &gas)
+	previousGas := gas;
+
+	//vmach := evm.NewVM(params, caller, ctx.txe.Envelope.Tx, ctx.Logger, ctx.VMOptions...)
+	// return 11 from snative payGas
+	//ret, exception := vmach.Call(txCache, ctx.txe, caller, callee, code, ctx.tx.Data, value, &gas)
+
+	
+
+	erc20Address, _ := crypto.AddressFromHexString("1F1D5E1BE37653A107437A496E62AB6C974606BD");
+	codeERC20 := txCache.GetCode(erc20Address);
+
+	// abiStr := "";
+	// abi := json.RawMessage(abiStr) ctx.tx.GasLimit-gas
+
+	ctx.tx.Data, _ = hex.DecodeString("678135FF0000000000000000000000000000000000000000000000000000000000000001")
+	vmach2 := evm.NewVM(params, caller, ctx.txe.Envelope.Tx, ctx.Logger, ctx.VMOptions...)
+	ret, exception := vmach2.Call(txCache, ctx.txe, caller, callee, codeERC20, ctx.tx.Data, value, &gas)
+
+	spentGas := previousGas - gas;
+	Use(spentGas)
+
 	if exception != nil {
 		// Failure. Charge the gas fee. The 'value' was otherwise not transferred.
 		ctx.Logger.InfoMsg("Error on execution",
@@ -231,4 +251,10 @@ func (ctx *CallContext) CallEvents(err error) {
 	if ctx.tx.Address != nil {
 		ctx.txe.Input(*ctx.tx.Address, errors.AsException(err))
 	}
+}
+
+func Use(vals ...interface{}) {
+    for _, val := range vals {
+        _ = val
+    }
 }

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	// Print informational output to Stderr
+
 	burrow(stdOutput()).Run(os.Args)
 }
 

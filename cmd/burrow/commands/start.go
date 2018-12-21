@@ -2,7 +2,6 @@ package commands
 
 import (
 	"context"
-
 	"github.com/jawher/mow.cli"
 )
 

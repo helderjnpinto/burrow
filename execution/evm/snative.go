@@ -17,7 +17,6 @@ package evm
 import (
 	"fmt"
 	"reflect"
-
 	"strings"
 
 	"github.com/hyperledger/burrow/acm"
@@ -27,6 +26,7 @@ import (
 	"github.com/hyperledger/burrow/execution/evm/sha3"
 	"github.com/hyperledger/burrow/logging"
 	"github.com/hyperledger/burrow/logging/structure"
+	// "github.com/hyperledger/burrow/execution/names"
 	"github.com/hyperledger/burrow/permission"
 )
 
@@ -77,9 +77,50 @@ func registerSNativeContracts() {
 	}
 }
 
+// Gas Contract function
+
+type payGasArgs struct {
+	Account    crypto.Address
+	Amount uint64
+}
+
+type payGasRets struct {
+    Result uint64
+}
+
+
+func payGas(state Interface, caller crypto.Address, gas *uint64, logger *logging.Logger,
+    a interface{}) (interface{}, error) {
+	args := a.(*payGasArgs)
+
+	accountX := args.Account
+	fmt.Printf("||||||||||||||||||||||||||||||||||||||||||||| %s \n\n\n\n\n\n\n\n\n\n\n\n", accountX)
+
+	//state.AddToBalance(args.Account, args.Amount)
+	balanceAcc := state.GetBalance(args.Account)
+	// state.writeState.commit()
+	
+	return payGasRets{Result: balanceAcc}, nil
+}
+
+
 // Returns a map of all SNative contracts defined indexed by name
 func SNativeContracts() map[string]*SNativeContractDescription {
 	contracts := []*SNativeContractDescription{
+		NewSNativeContract(`
+        * Interface for gas consumption.
+        `,
+            "Gas",
+            &SNativeFunctionDescription{Comment: `
+            * @notice Test payGas
+            * @return result a bool
+            `,
+                Name:      "payGas",
+                PermFlag:  permission.Send,
+                Arguments: reflect.TypeOf(payGasArgs{}),
+                Returns:   reflect.TypeOf(payGasRets{}),
+                F:         payGas},
+        ),
 		NewSNativeContract(`
 		* Interface for managing Secure Native authorizations.
 		* @dev This interface describes the functions exposed by the SNative permissions layer in burrow.
@@ -169,6 +210,7 @@ func SNativeContracts() map[string]*SNativeContractDescription {
 				Arguments: reflect.TypeOf(setGlobalArgs{}),
 				Returns:   reflect.TypeOf(setGlobalRets{}),
 				F:         setGlobal},
+	
 		),
 	}
 

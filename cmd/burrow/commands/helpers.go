@@ -18,6 +18,7 @@ type Output interface {
 }
 
 func obtainBurrowConfig(configFile, genesisDocFile string) (*config.BurrowConfig, error) {
+	
 	// We need to reflect on whether this obscures where values are coming from
 	conf := config.DefaultBurrowConfig()
 	// We treat logging a little differently in that if anything is set for logging we will not
@@ -30,6 +31,14 @@ func obtainBurrowConfig(configFile, genesisDocFile string) (*config.BurrowConfig
 			// Try working directory
 			genesisDocProvider(config.DefaultGenesisDocJSONFileName, true)),
 	).Apply(conf)
+
+		fmt.Println("os.Args")
+		fmt.Println("os.Args")
+		fmt.Println("os.Args2")
+	fmt.Printf("%v", conf) 
+	fmt.Println("os.Args")
+
+
 	if err != nil {
 		return nil, err
 	}
