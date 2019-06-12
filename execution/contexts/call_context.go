@@ -198,11 +198,9 @@ func (ctx *CallContext) Deliver(inAcc, outAcc *acm.Account, value uint64) error 
 
 	previousGas := gas;
 
-	//vmach := evm.NewVM(params, caller, ctx.txe.Envelope.Tx, ctx.Logger, ctx.VMOptions...)
+	vmach := evm.NewVM(params, caller, ctx.txe.Envelope.Tx, ctx.Logger, ctx.VMOptions...)
+	ret, exception := vmach.Call(txCache, ctx.txe, caller, callee, code, ctx.tx.Data, value, &gas)
 	// return 11 from snative payGas
-	//ret, exception := vmach.Call(txCache, ctx.txe, caller, callee, code, ctx.tx.Data, value, &gas)
-
-	
 
 	erc20Address, _ := crypto.AddressFromHexString("1F1D5E1BE37653A107437A496E62AB6C974606BD");
 	codeERC20 := txCache.GetCode(erc20Address);
@@ -211,11 +209,12 @@ func (ctx *CallContext) Deliver(inAcc, outAcc *acm.Account, value uint64) error 
 	// abi := json.RawMessage(abiStr) ctx.tx.GasLimit-gas
 
 	ctx.tx.Data, _ = hex.DecodeString("678135FF0000000000000000000000000000000000000000000000000000000000000001")
+	
 	vmach2 := evm.NewVM(params, caller, ctx.txe.Envelope.Tx, ctx.Logger, ctx.VMOptions...)
-	ret, exception := vmach2.Call(txCache, ctx.txe, caller, callee, codeERC20, ctx.tx.Data, value, &gas)
+	ret2, exception2 := vmach2.Call(txCache, ctx.txe, caller, callee, codeERC20, ctx.tx.Data, value, &gas)
 
 	spentGas := previousGas - gas;
-	Use(spentGas)
+	Use(spentGas, codeERC20, erc20Address, exception2, ret2)// only for debug
 
 	if exception != nil {
 		// Failure. Charge the gas fee. The 'value' was otherwise not transferred.

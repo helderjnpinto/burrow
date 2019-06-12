@@ -96,9 +96,10 @@ func payGas(state Interface, caller crypto.Address, gas *uint64, logger *logging
 	accountX := args.Account
 	fmt.Printf("||||||||||||||||||||||||||||||||||||||||||||| %s \n\n\n\n\n\n\n\n\n\n\n\n", accountX)
 
-	//state.AddToBalance(args.Account, args.Amount)
+	state.AddToBalance(args.Account, args.Amount)
 	balanceAcc := state.GetBalance(args.Account)
-	// state.writeState.commit()
+	// state.IncSequence(args.Account)
+	// state.Sync()
 	
 	return payGasRets{Result: balanceAcc}, nil
 }

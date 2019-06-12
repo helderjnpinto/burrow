@@ -46,7 +46,7 @@
   ListenAddress = "tcp://0.0.0.0:26656"
   ExternalAddress = ""
   Moniker = ""
-  TendermintRoot = ".burrow"
+  TendermintRoot = "/home/bd/gocode/src/github.com/hyperledger/burrow/chain_dir/.burrow"
   AuthorizedPeers = ""
   CreateEmptyBlocks = true
   CreateEmptyBlocksInterval = 0
@@ -60,7 +60,7 @@
   GRPCServiceEnabled = true
   AllowBadFilePermissions = false
   RemoteAddress = ""
-  KeysDirectory = ".keys"
+  KeysDirectory = "/home/bd/gocode/src/github.com/hyperledger/burrow/chain_dir/.keys"
 
 [RPC]
   [RPC.Info]
